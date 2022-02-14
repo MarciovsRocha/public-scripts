@@ -1,14 +1,13 @@
-#! /bin/bash
+#!/bin/bash
 
 # TODO -c CheckRoot -t ARRUMAR
-# função para verificar se o comando está sendo executado por
-# usuário root
-# check_root(){
-#    if [ [ $EUID -ne 0 ] && ROOT ]; then
-#        echo "This script must be run as root."
-#        exit 1
-#    fi
-#}
+# função para verificar se o comando está sendo executado por usuário root
+check_root(){
+    if [[ $EUID -ne 0 ]] && $ROOT; then
+        echo "This script must be run as root."
+        exit 1
+    fi
+}
 
 # funcao para verificar se o diretório existe
 # retorna 0 caso o diretorio exista
@@ -97,15 +96,4 @@ isnumber(){
     fi
 }
 
-#teste(){
-#    jsonList=$(jq -r '.blockdevices'[] <<< $(lsblk -J))
-#    echo $jsonList
-#    for data in $jsonList; do
-#        echo $data
-#    done
-#}
-
-teste(){
-    echo ""
-}
-
+check_root
