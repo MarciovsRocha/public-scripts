@@ -34,14 +34,18 @@ f="${f}/${n}"
 echo "Criando pasta do projeto..."
 mkdir "${f}" && echo "Criada pasta do projeto: '${f}/${n}'"
 
+echo "Change directory to '${f}'"
+cd "${f}"
+
 echo "Searching files to create"
 dependencias -t 'c' -f "/data/initial_files"
 
 echo "Criando arquivos..."
-touch "${f}/${n}.${e}" && echo "Criado arquivo: '${f}/${n}.${e}'"
+touch "${n}.${e}" && echo "Criado arquivo: '${n}.${e}'"
 while IFS= read -r file ; do
-    touch "${f}/${file}" && echo "Criado arquivo: '${file}'" 
+    touch "${file}" && echo "Criado arquivo: '${file}'" 
 done < "./data/initial_files"
+dependencias -t 'c' -f LICENCE
 
 echo "Iniciando repositório GIT..."
-cd "${f}" && git init
+git init
